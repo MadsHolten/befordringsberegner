@@ -6,8 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ionic build --prod -- --base-href https://madsholten.github.io/befordringsberegner/",
-    "deploy": "npx angular-cli-ghpages --dir=www",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
