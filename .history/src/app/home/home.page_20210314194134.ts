@@ -46,7 +46,8 @@ export class HomePage {
   }
 
   public setShowDetails(month: string): void{
-    this.showDetails = this.showDetails != month ? month : undefined;
+    console.log(month)
+    this.showDetails = month;
   }
 
   public getShowDetails(month: string): boolean{

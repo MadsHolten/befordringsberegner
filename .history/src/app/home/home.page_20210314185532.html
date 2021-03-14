@@ -43,7 +43,6 @@
       </ion-card-content>
     </ion-card>
 
-    <!-- step 3 -->
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>Upload filer</ion-card-subtitle>
@@ -72,37 +71,8 @@
 
         </ngx-dropzone>
 
-        <p *ngIf="fileEvaluation">{{fileEvaluation}}</p>
-
-        <ion-button *ngIf="files.length && !fileEvaluation" color="primary" (click)="processFiles()">GO!</ion-button>
-
       </ion-card-content>
     </ion-card>
-
-    <!-- resultater -->
-    <ion-card *ngIf="result">
-      <ion-card-header>
-        <ion-card-subtitle>RESULTAT</ion-card-subtitle>
-        <ion-card-title>Step 4</ion-card-title>
-      </ion-card-header>
-    
-      <ion-card-content>
-        
-        <p>Totalt antal besøg for {{year}}: <b>{{result["TOTAL"]}}</b></p>
-
-        <ul>
-          <li *ngFor="let m of months" (click)="setShowDetails(m)">
-            {{m}}: {{result[m].length}}
-            <ul *ngIf="showDetails == m">
-              <li *ngFor="let date of result[m]">{{date}}</li>
-            </ul>
-          </li>
-        </ul>
-
-      </ion-card-content>
-    </ion-card>
-
-    <p>Udviklet med kærlighed af Mads Holten Rasmussen</p>
 
   </div>
 </ion-content>

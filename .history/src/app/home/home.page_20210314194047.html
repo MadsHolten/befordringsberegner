@@ -93,16 +93,14 @@
         <ul>
           <li *ngFor="let m of months" (click)="setShowDetails(m)">
             {{m}}: {{result[m].length}}
-            <ul *ngIf="showDetails == m">
-              <li *ngFor="let date of result[m]">{{date}}</li>
-            </ul>
           </li>
+          <ul *ngIf="getShowDetails(m)">
+            <li *ngFor="let date of result[m]">{{date}}</li>
+          </ul>
         </ul>
 
       </ion-card-content>
     </ion-card>
-
-    <p>Udviklet med kærlighed af Mads Holten Rasmussen</p>
 
   </div>
 </ion-content>

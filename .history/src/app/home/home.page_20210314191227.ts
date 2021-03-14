@@ -15,42 +15,26 @@ export class HomePage {
   public acceptedTypes = ["json"];
 
   public fileEvaluation: string;
-  public result: any;
 
   public months = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
-  public year;
-  public showDetails; // Month to display details for
 
   constructor(
     private _s: HomeService
   ) {}
 
-  async onSelect(ev){
+  onSelect(ev){
     const added = ev.addedFiles
           .map(f => this.addMetadata(f))
           .filter(f => this.filterByType(f));
-
-    this.files = this.files.concat(added);
     
-    this.evaluateFiles(this.files);
+    const filesOk = this.evaluateFiles(added);
 
-  }
+    if(!filesOk) return;
+    
+    this.files.push(...added);
 
-  public async processFiles(){
-    try{
-      this.result = await this._s.processFiles(this.files, this.searchString);
-    }catch(err){
-      console.log(err);
-      this.fileEvaluation = "Noget gik galt ved læsing af filerne";
-    }
-  }
+    this._s.processFiles(this.files);
 
-  public setShowDetails(month: string): void{
-    this.showDetails = this.showDetails != month ? month : undefined;
-  }
-
-  public getShowDetails(month: string): boolean{
-    return this.showDetails == month ? true : false;
   }
 
   private evaluateFiles(files: ExtendedFile[]){
@@ -62,7 +46,7 @@ export class HomePage {
 
     let seenMonths = [];
     files.forEach(f => {
-      this.year = f.name.split("_")[0];
+      const year = f.name.split("_")[0];
       const month = f.name.split("_")[1].split('.json')[0];
 
       if(this.months.indexOf(month) == -1){

@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 @NgModule({
@@ -13,8 +12,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
-    NgxDropzoneModule
+    HomePageRoutingModule
   ],
   declarations: [HomePage]
 })

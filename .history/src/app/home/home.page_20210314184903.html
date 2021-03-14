@@ -43,7 +43,6 @@
       </ion-card-content>
     </ion-card>
 
-    <!-- step 3 -->
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>Upload filer</ion-card-subtitle>
@@ -55,54 +54,11 @@
         <ngx-dropzone 
           (change)="onSelect($event)" 
           [multiple]="true">
-          <ngx-dropzone-label>Drop filer her</ngx-dropzone-label>
-
-          <!-- Accepted files -->
-          <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-            <ngx-dropzone-label>{{ f.name }} ({{ f.fileSize }})</ngx-dropzone-label>
-          </ngx-dropzone-preview>
-
-          <!-- Rejected files -->
-          <ngx-dropzone-preview *ngFor="let f of rejectedFiles" [removable]="true" (removed)="onRemove(f)">
-            <ngx-dropzone-label class="rejected">
-                {{ f.name }} ({{ f.fileSize }})
-                <span style="font-size: 12px">{{rejectedLabel}}</span>
-            </ngx-dropzone-label>
-          </ngx-dropzone-preview>
-
+          <ngx-dropzone-label>Månedsfiler</ngx-dropzone-label>
         </ngx-dropzone>
 
-        <p *ngIf="fileEvaluation">{{fileEvaluation}}</p>
-
-        <ion-button *ngIf="files.length && !fileEvaluation" color="primary" (click)="processFiles()">GO!</ion-button>
-
       </ion-card-content>
     </ion-card>
-
-    <!-- resultater -->
-    <ion-card *ngIf="result">
-      <ion-card-header>
-        <ion-card-subtitle>RESULTAT</ion-card-subtitle>
-        <ion-card-title>Step 4</ion-card-title>
-      </ion-card-header>
-    
-      <ion-card-content>
-        
-        <p>Totalt antal besøg for {{year}}: <b>{{result["TOTAL"]}}</b></p>
-
-        <ul>
-          <li *ngFor="let m of months" (click)="setShowDetails(m)">
-            {{m}}: {{result[m].length}}
-            <ul *ngIf="showDetails == m">
-              <li *ngFor="let date of result[m]">{{date}}</li>
-            </ul>
-          </li>
-        </ul>
-
-      </ion-card-content>
-    </ion-card>
-
-    <p>Udviklet med kærlighed af Mads Holten Rasmussen</p>
 
   </div>
 </ion-content>

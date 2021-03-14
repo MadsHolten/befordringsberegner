@@ -18,8 +18,6 @@ export class HomePage {
   public result: any;
 
   public months = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
-  public year;
-  public showDetails; // Month to display details for
 
   constructor(
     private _s: HomeService
@@ -45,14 +43,6 @@ export class HomePage {
     }
   }
 
-  public setShowDetails(month: string): void{
-    this.showDetails = this.showDetails != month ? month : undefined;
-  }
-
-  public getShowDetails(month: string): boolean{
-    return this.showDetails == month ? true : false;
-  }
-
   private evaluateFiles(files: ExtendedFile[]){
     
     if(files.length > 12){
@@ -62,7 +52,7 @@ export class HomePage {
 
     let seenMonths = [];
     files.forEach(f => {
-      this.year = f.name.split("_")[0];
+      const year = f.name.split("_")[0];
       const month = f.name.split("_")[1].split('.json')[0];
 
       if(this.months.indexOf(month) == -1){

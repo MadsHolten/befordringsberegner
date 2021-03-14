@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { ExtendedFile, HomeService } from './home.service';
+
+export interface ExtendedFile extends File{
+  fileSize: string;
+  fileExtension: string;
+}
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  providers: [ HomeService ]
 })
 export class HomePage {
 
@@ -15,42 +18,20 @@ export class HomePage {
   public acceptedTypes = ["json"];
 
   public fileEvaluation: string;
-  public result: any;
 
   public months = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
-  public year;
-  public showDetails; // Month to display details for
 
-  constructor(
-    private _s: HomeService
-  ) {}
+  constructor() {}
 
-  async onSelect(ev){
+  onSelect(ev){
     const added = ev.addedFiles
           .map(f => this.addMetadata(f))
           .filter(f => this.filterByType(f));
-
-    this.files = this.files.concat(added);
     
-    this.evaluateFiles(this.files);
+    this.evaluateFiles(added);
+    
+    this.files.push(...added);
 
-  }
-
-  public async processFiles(){
-    try{
-      this.result = await this._s.processFiles(this.files, this.searchString);
-    }catch(err){
-      console.log(err);
-      this.fileEvaluation = "Noget gik galt ved læsing af filerne";
-    }
-  }
-
-  public setShowDetails(month: string): void{
-    this.showDetails = this.showDetails != month ? month : undefined;
-  }
-
-  public getShowDetails(month: string): boolean{
-    return this.showDetails == month ? true : false;
   }
 
   private evaluateFiles(files: ExtendedFile[]){
@@ -61,23 +42,14 @@ export class HomePage {
     }
 
     let seenMonths = [];
+    let year;
     files.forEach(f => {
-      this.year = f.name.split("_")[0];
+      const year = f.name.split("_")[0];
       const month = f.name.split("_")[1].split('.json')[0];
-
-      if(this.months.indexOf(month) == -1){
-        this.fileEvaluation = "Ukendt filnavn. Filer bør være navngivet ÅR_MÅNED.json (fx 2020_APRIL.json)";
-        return false;
-      }
-
-      if(seenMonths.indexOf(month) != -1){
-        this.fileEvaluation = "Fandt mere end én fil for måneden " + month;
-        return false;
-      }
-
-      seenMonths.push(month);
-
-    });
+      console.log(year);
+      console.log(month);
+      // this.months.
+    })
   }
 
   private addMetadata(file: ExtendedFile){

@@ -19,7 +19,6 @@ export class HomePage {
 
   public months = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
   public year;
-  public showDetails; // Month to display details for
 
   constructor(
     private _s: HomeService
@@ -43,14 +42,6 @@ export class HomePage {
       console.log(err);
       this.fileEvaluation = "Noget gik galt ved læsing af filerne";
     }
-  }
-
-  public setShowDetails(month: string): void{
-    this.showDetails = this.showDetails != month ? month : undefined;
-  }
-
-  public getShowDetails(month: string): boolean{
-    return this.showDetails == month ? true : false;
   }
 
   private evaluateFiles(files: ExtendedFile[]){

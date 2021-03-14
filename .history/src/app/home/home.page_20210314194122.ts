@@ -45,11 +45,12 @@ export class HomePage {
     }
   }
 
-  public setShowDetails(month: string): void{
-    this.showDetails = this.showDetails != month ? month : undefined;
+  public setShowDetails(month: string){
+    console.log(month)
+    this.showDetails = month;
   }
 
-  public getShowDetails(month: string): boolean{
+  public getShowDetails(month: string){
     return this.showDetails == month ? true : false;
   }
 
