@@ -55,6 +55,10 @@ export class HomePage {
     this.showDetails = this.showDetails != month ? month : undefined;
   }
 
+  public getShowDetails(month: string): boolean{
+    return this.showDetails == month ? true : false;
+  }
+
   onRemove(file: ExtendedFile){
     this.files = this.files.filter(f => f.name != file.name);
     this.rejectedFiles = this.rejectedFiles.filter(f => f.name != file.name);

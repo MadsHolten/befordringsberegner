@@ -58,7 +58,7 @@
 
             <ion-card-content>
 
-              <ngx-dropzone class="dropzone" (change)="onSelect($event)" [multiple]="true">
+              <ngx-dropzone (change)="onSelect($event)" [multiple]="true">
                 <ngx-dropzone-label>Drop filer her</ngx-dropzone-label>
 
                 <!-- Accepted files -->
@@ -78,17 +78,9 @@
 
               <p *ngIf="fileEvaluation">{{fileEvaluation}}</p>
 
-              <ion-row>
-                <ion-col>
-                  <ion-button *ngIf="files.length && !fileEvaluation" color="secondary" (click)="reset()">Reset
-                  </ion-button>
-                </ion-col>
-                <ion-col>
-                  <ion-button *ngIf="files.length && !fileEvaluation" color="primary" (click)="processFiles()">GO!
-                  </ion-button>
-                </ion-col>
-              </ion-row>
-              
+              <ion-button *ngIf="files.length && !fileEvaluation" color="primary" (click)="processFiles()">GO!
+              </ion-button>
+
             </ion-card-content>
           </ion-card>
 
